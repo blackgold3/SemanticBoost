@@ -8,10 +8,10 @@
 
 <div style="font-size:20px">
     <a target='_blank'>Xin He </a>&emsp;
-    <a target='_blank'>Shaoli Huang &emsp;
-    <a target='_blank'>Xiaohang Zhan <br>
-    <a target='_blank'>Chao Weng &emsp;
-    <a target='_blank'>Ying Shan
+    <a target='_blank'>Shaoli Huang</a> &emsp;
+    <a target='_blank'>Xiaohang Zhan</a> <br>
+    <a target='_blank'>Chao Weng</a> &emsp;
+    <a target='_blank'>Ying Shan</a>
 </div>
 <div style="font-size:22px">
   <img src="figs/tencent.png", width=16, height=19> Tencent AI Lab
