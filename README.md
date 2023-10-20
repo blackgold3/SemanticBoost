@@ -17,7 +17,7 @@
 <table border=0>
 <tr>
 <td><img src="figs/tencent.png", width=24, height=24></td>
-<td><span style="font-size:20px">Tencent AI Lab</span></td>
+<td><span style="font-size:20px"><b>Tencent AI Lab</b></span></td>
 </tr>
 </table>
 
