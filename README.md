@@ -6,14 +6,15 @@
 
   <a href='https://arxiv.org/abs/2211.12194'><img src='https://img.shields.io/badge/ArXiv-PDF-red'></a> &nbsp; <a href='https://sadtalker.github.io'><img src='https://img.shields.io/badge/Project-Page-Green'></a> &nbsp; [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/vinthony/SadTalker) &nbsp; [![Discord](https://dcbadge.vercel.app/api/server/rrayYqZ4tf?style=flat)](https://discord.gg/rrayYqZ4tf)
 
-<div style="font-size:20px">
+<div style="font-size:16px">
     <a target='_blank'>Xin He </a>&emsp;
     <a target='_blank'>Shaoli Huang</a> &emsp;
     <a target='_blank'>Xiaohang Zhan</a> <br>
     <a target='_blank'>Chao Weng</a> &emsp;
     <a target='_blank'>Ying Shan</a>
 </div>
-<div style="font-size:22px">
+
+<div style="font-size:20px">
   <img src="figs/tencent.png", width=16, height=19> Tencent AI Lab
 </div>
 
