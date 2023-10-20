@@ -1,6 +1,6 @@
 <div align="center">
 
-<h2> SemanticBoost: Elevating Motion Generation with Augmented Textual Cues
+<h2> SemanticBoost: Elevating Motion Generation with Augmented Textual Cues </h2>
 
 <br>
 
@@ -14,7 +14,7 @@
     Chao Weng &emsp;
     Ying Shan &emsp;
 </div>
-
+<br>
 <div>
   <img src="figs/tencent.png", width=20, height=22> Tencent AI Lab
 </div>
@@ -37,11 +37,11 @@ SemanticBoost framework consists of optimized diffusion model **CAMD** and **Sem
     <td><img src="figs/west-hand.gif"></td>
     <td><img src="figs/east-back.gif"></td>
   </tr>
-  <tr>
-    <td><p style="font-size:13px"> A person walks. During the process, the person moves to the north, his leftforarm moves to body's left front, left back repeatly. </p></td>
-    <td><p style="font-size:13px"> A person walks backwards and sits down on the chair. During the process, the person moves to the south, the person looks leftward backward. </p></td>
-    <td><p style="font-size:13px"> A person walks forward and does a handstand. During the process, the person moves to the west. </p></td>
-    <td><p style="font-size:13px"> A person walks backwards. During the process, the person moves to east, the person looks rightward backward. </p></td>
+  <tr align="center">
+    <td><span style="font-size:13px"> A person walks. During the process, the person moves to the north, his leftforarm moves to body's left front, left back repeatly. </span></td>
+    <td><span style="font-size:13px"> A person walks backwards and sits down on the chair. During the process, the person moves to the south, the person looks leftward backward. </span></td>
+    <td><span style="font-size:13px"> A person walks forward and does a handstand. During the process, the person moves to the west. </span></td>
+    <td><span style="font-size:13px"> A person walks backwards. During the process, the person moves to east, the person looks rightward backward. </p></td>
   </tr>
 </table>
 
