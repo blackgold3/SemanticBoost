@@ -108,7 +108,7 @@ def t2m_demo():
         gr.Markdown("<div align='center'> <h2> 🤷‍♂️ SemanticBoost: Elevating Motion Generation with Augmented Textual Cues </span> </h2> \
                     <a style='font-size:18px;color: #000000' href='https://arxiv.org/abs/2211.12194'>Arxiv</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \
                     <a style='font-size:18px;color: #000000' href='https://sadtalker.github.io'>Homepage</a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \
-                    <a style='font-size:18px;color: #000000' href='https://github.com/Winfredy/SadTalker'> Github </div>")
+                    <a style='font-size:18px;color: #000000' href='https://github.com/blackgold3/SemanticBoost'> Github </div>")
         
         with gr.Row().style(equal_height=True):
             with gr.Column(variant='panel'): 
