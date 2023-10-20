@@ -14,7 +14,7 @@
 </div>
 <br>
 <div>
-  <img src="figs/tencent.png", width=15, height=15>&nbsp; <b>Tencent AI Lab</b>
+  <img src="figs/tencent.png", width=20, height=22> <font size=5> Tencent AI Lab</font>
 </div>
 
 </div>
