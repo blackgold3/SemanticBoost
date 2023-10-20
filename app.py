@@ -67,7 +67,7 @@ def demo(prompt, mode, condition, render_mode="joints", skip_steps=0, out_size=1
 
         if render_mode == "joints":
             pics = visual.joints_process(output, prompt)
-        elif render_mode == "pyrender":
+        elif render_mode.startswith("pyrender"):
             meshes, _ = visual.get_mesh(output)
             pics = visual.pyrender_process(meshes, out_size, out_size)
         
@@ -124,7 +124,7 @@ def t2m_demo():
                                 out_size = gr.Number(value=1024, label="Resolution", info="The resolution of output videos", minimum=224, maximum=2048, precision=0)
 
                             with gr.Row():
-                                render_mode = gr.Radio(['joints','pyrender'], value='joints', label='Render', info="If render results to 3D meshes? Pyrender need more time.")
+                                render_mode = gr.Radio(['joints','pyrender_fast', 'pyrender_slow'], value='joints', label='Render', info="If render results to 3D meshes? Pyrender need more time.")
                                 tada_role = gr.Dropdown(files, value="None", multiselect=False, label="TADA Role", info="Choose 3D role to render")
 
                             with gr.Row():
