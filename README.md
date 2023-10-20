@@ -13,9 +13,13 @@
     Ying Shan &emsp;
 </div>
 <br>
-<div>
-  <img src="figs/tencent.png", width=20, height=22> <font size=5> Tencent AI Lab</font>
-</div>
+
+<table>
+<tr>
+<td><img src="figs/tencent.png", width=24, height=24></td>
+<td><span style="font-size:20px">Tencent AI Lab</span></td>
+</tr>
+</table>
 
 </div>
 
