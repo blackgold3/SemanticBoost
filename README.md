@@ -110,7 +110,7 @@ bash scripts/prepare.sh
 
 ### 5. (Optional) TADA Support
 
-- Download1
+- Download Choice 1
 
   - Download charactors in 
   > https://drive.google.com/file/d/1rbkIpRmvPaVD9AJeCxWqBBYHkRIwrNmC/view
@@ -125,7 +125,7 @@ bash scripts/prepare.sh
   bash scripts/tada_process.sh
   ```
 
-- Download2
+- Download Choice 2
 
   ```sh
   bash scripts/tada_goole.sh
