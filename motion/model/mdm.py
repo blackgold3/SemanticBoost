@@ -127,7 +127,7 @@ class MDM(nn.Module):
     def load_and_freeze_clip(self, clip_version):
         clip_model, clip_preprocess = clip.load(clip_version, device='cpu', jit=False, download_root=self.json_dict["clip"])  # Must set jit=False for training
         clip.model.convert_weights(clip_model)  # Actually this line is unnecessary since clip by default already on float16
-        # clip_model.float()
+        clip_model.float()
         # Freeze CLIP weights
         clip_model.eval()
         for p in clip_model.parameters():

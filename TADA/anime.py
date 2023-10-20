@@ -77,7 +77,7 @@ class Animation:
             dtype=torch.float32,
             batch_size=1,
         )
-        self.body_model = smplx.create(**model_params).to(device='cuda')
+        self.body_model = smplx.create(**model_params).to(device=self.device)
         self.smplx_face = self.body_model.faces.astype(np.int32)
 
         ckpt_file = os.path.join(workspace_dir, "MESH", ckpt_path, "params.pt")
@@ -86,7 +86,7 @@ class Animation:
 
 
     def load_ckpt_data(self, ckpt_file, albedo_path):
-        model_data = torch.load(ckpt_file)
+        model_data = torch.load(ckpt_file, map_location=self.device)
         self.expression = model_data["expression"] if "expression" in model_data else None
         self.jaw_pose = model_data["jaw_pose"] if "jaw_pose" in model_data else None
 
