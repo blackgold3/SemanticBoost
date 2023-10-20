@@ -4,7 +4,7 @@
 
 <br>
 
-  <a href='https://arxiv.org/abs/2211.12194'><img src='https://img.shields.io/badge/ArXiv-PDF-red'> &emsp; <a href='https://sadtalker.github.io'><img src='https://img.shields.io/badge/Project-Page-Green'> &emsp; [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/vinthony/SadTalker) &emsp; [![Discord](https://dcbadge.vercel.app/api/server/rrayYqZ4tf?style=flat)](https://discord.gg/rrayYqZ4tf)
+  <a href='https://arxiv.org/abs/2211.12194'><img src='https://img.shields.io/badge/ArXiv-PDF-red'></a> &emsp; <a href='https://sadtalker.github.io'><img src='https://img.shields.io/badge/Project-Page-Green'></a> &emsp; [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/vinthony/SadTalker) &emsp; [![Discord](https://dcbadge.vercel.app/api/server/rrayYqZ4tf?style=flat)](https://discord.gg/rrayYqZ4tf)
 
 
 <div>
@@ -16,7 +16,7 @@
 </div>
 <br>
 <div>
-  <img src="figs/tencent.png", width=20, height=22> Tencent AI Lab
+  <img src="figs/tencent.png", width=20, height=22> <span style="font-size:20px">Tencent AI Lab</span>
 </div>
 
 </div>
