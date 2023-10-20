@@ -30,7 +30,7 @@ def prepare():
     if not os.path.exists("tada-extend"):
         import subprocess
         import platform
-        command = "bash scripts/tada_google.sh"
+        command = "bash scripts/tada_goole.sh"
         subprocess.call(command, shell=platform.system() != 'Windows')
 
 def demo(prompt, mode, condition, render_mode="joints", skip_steps=0, out_size=1024, tada_role=None):
