@@ -6,11 +6,11 @@
 
 
 <div>
-    Xin He &emsp;
-    Shaoli Huang &emsp;
-    Xiaohang Zhan  <br>
-    Chao Weng &emsp;
-    Ying Shan &emsp;
+    <b>Xin He </b> &emsp;
+    <b>Shaoli Huang </b> &emsp;
+    <b>Xiaohang Zhan </b>  <br>
+    <b>Chao Weng </b> &emsp;
+    <b>Ying Shan </b> &emsp;
 </div>
 <br>
 
