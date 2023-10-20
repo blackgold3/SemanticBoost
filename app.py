@@ -1,6 +1,6 @@
 import os, sys
 import gradio as gr
-
+from huggingface_hub import snapshot_download
 css = """
 .dfile {height: 85px}
 .ov {height: 185px}
@@ -21,6 +21,17 @@ def ref_video_fn(path_of_ref_video):
         return gr.update(value=True)
     else:
         return gr.update(value=False)
+
+def prepare():
+    if not os.path.exists("body_models") or not os.path.exists("weights"):
+        REPO_ID = 'Kleinhe/CAMD'
+        snapshot_download(repo_id=REPO_ID, local_dir='./', local_dir_use_symlinks=False)
+
+    if not os.path.exists("tada-extend"):
+        import subprocess
+        import platform
+        command = "bash scripts/tada_google.sh"
+        subprocess.call(command, shell=platform.system() != 'Windows')
 
 def demo(prompt, mode, condition, render_mode="joints", skip_steps=0, out_size=1024, tada_role=None):
     prompt = prompt
@@ -81,6 +92,7 @@ def demo(prompt, mode, condition, render_mode="joints", skip_steps=0, out_size=1
     
 
 def t2m_demo():
+    prepare()
     os.makedirs("results/motion", exist_ok=True)
     os.makedirs("results/joints", exist_ok=True)
     os.makedirs("results/smpls", exist_ok=True)
@@ -93,9 +105,10 @@ def t2m_demo():
     files = ["None"] +  files
 
     with gr.Blocks(analytics_enabled=False, css=css) as t2m_interface:
-        gr.Markdown("<div align='center'> <h2> Tencent AILab - CVC - SDH  </span> </h2>")
-
-        gr.Markdown("<div align='left'> <h3> 1. Text to Motion  </span> </h3>")
+        gr.Markdown("<div align='center'> <h2> 🤷‍♂️ SemanticBoost: Elevating Motion Generation with Augmented Textual Cues </span> </h2> \
+                    <a style='font-size:18px;color: #000000' href='https://arxiv.org/abs/2211.12194'>Arxiv</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \
+                    <a style='font-size:18px;color: #000000' href='https://sadtalker.github.io'>Homepage</a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \
+                    <a style='font-size:18px;color: #000000' href='https://github.com/Winfredy/SadTalker'> Github </div>")
         
         with gr.Row().style(equal_height=True):
             with gr.Column(variant='panel'): 

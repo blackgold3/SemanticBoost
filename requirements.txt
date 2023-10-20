@@ -72,3 +72,4 @@ websockets==11.0.3
 numpy==1.23.0
 shapely==2.0.2
 mapbox_earcut==1.0.1
+gdown==4.7.1

@@ -79,7 +79,7 @@ In this repo, we achieves the functions:
 
 ## 📢 News
 
-- [2023/10/20] **Release pretrained weights and inference process 🔥**
+[2023/10/20] **Release pretrained weights and inference process 🔥**
 
 ## ⚡️ Quick Start
 
@@ -110,18 +110,27 @@ bash scripts/prepare.sh
 
 ### 5. (Optional) TADA Support
 
-- Download charactors in 
-> https://drive.google.com/file/d/1rbkIpRmvPaVD9AJeCxWqBBYHkRIwrNmC/view
+- Download1
 
-- Download Init Pose in
+  - Download charactors in 
+  > https://drive.google.com/file/d/1rbkIpRmvPaVD9AJeCxWqBBYHkRIwrNmC/view
 
-> https://tada.is.tue.mpg.de/download.php
+  - Download Init Pose in
 
-- Save two zip files in the root dir and then run command
+  > https://tada.is.tue.mpg.de/download.php
 
-```
-bash scripts/tada_process.sh
-```
+  - Save two zip files in the root dir and then run command
+
+  ```sh
+  bash scripts/tada_process.sh
+  ```
+
+- Download2
+
+  ```sh
+  bash scripts/tada_goole.sh
+  ```
+
 
 </details>
 
