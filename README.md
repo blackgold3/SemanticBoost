@@ -14,7 +14,7 @@
 </div>
 <br>
 
-<a href="https://ai.tencent.com/ailab/zh/index"><b>Tencent AI Lab</b></a>
+<a href="https://ai.tencent.com/ailab/zh/index"><img src='figs/ailab.png' width=80></a>
 
 
 </div>
