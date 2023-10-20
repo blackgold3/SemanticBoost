@@ -1,0 +1,23 @@
+{
+  "local":false,
+  "num_frames": 196,
+  "ema": true,
+  "rep": "smr",
+  "dataset": "humanml",
+  "model_path": "/apdcephfs/private_kleinhe/mdm/llama_decoder_static_mask25/S100000_F0.2312_T0.5190.pth",
+  "control_signal": null,
+  "noise_schedule":"cosine",
+  "diffusion_steps":1000,
+  "sigma_small":true,
+  "layers":8,
+  "heads":4,
+  "ff_size":1024,
+  "latent_dim":512,
+  "cond_mask_prob":0.1,
+  "unconstrained":false,
+  "arch":"refined_decoder",
+  "encode_full":2,
+  "txt_tokens":1,
+  "guidance_param":2.5,
+  "frame_mask":0
+  }

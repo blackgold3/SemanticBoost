@@ -1,0 +1,11 @@
+{
+    "smpl_path":"body_models",
+    "cadm":"weights/refined_decoder_norm.pth",
+    "cadm-augment":"weights/refined_decoder_augment.pth",
+    "mdm":"weights/given_mdm.pt",
+    "dataset_dir":"motion/dataset",
+    "joints2smpl":"SMPLX/visualize_joint2smpl/joints2smpl/smpl_models",
+    "clip":"weights/",
+    "config":"motion/sample_config.json",
+    "tada_base":"tada-extend"
+}
