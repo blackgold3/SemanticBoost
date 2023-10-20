@@ -6,15 +6,14 @@
 
   <a href='https://arxiv.org/abs/2211.12194'><img src='https://img.shields.io/badge/ArXiv-PDF-red'></a> &nbsp; <a href='https://sadtalker.github.io'><img src='https://img.shields.io/badge/Project-Page-Green'></a> &nbsp; [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/vinthony/SadTalker) &nbsp; [![Discord](https://dcbadge.vercel.app/api/server/rrayYqZ4tf?style=flat)](https://discord.gg/rrayYqZ4tf)
 
-<div>
+<div style="font-size:20px">
     <a target='_blank'>Xin He </a>&emsp;
     <a target='_blank'>Shaoli Huang &emsp;
     <a target='_blank'>Xiaohang Zhan <br>
     <a target='_blank'>Chao Weng &emsp;
     <a target='_blank'>Ying Shan
 </div>
-<br>
-<div>
+<div style="font-size:22px">
   <img src="figs/tencent.png", width=16, height=19> Tencent AI Lab
 </div>
 
@@ -37,10 +36,10 @@ SemanticBoost framework consists of optimized diffusion model **CAMD** and **Sem
     <td><img src="figs/east-back.gif"></td>
   </tr>
   <tr>
-    <td><p style="font-size:13px; "> A person walks. During the process, the person moves to the north, his leftforarm moves to body's left front, left back repeatly. </p></td>
-    <td><p style="font-size:13px; "> A person walks backwards and sits down on the chair. During the process, the person moves to the south, the person looks leftward backward. </p></td>
-    <td><p style="font-size:13px; "> A person walks forward and does a handstand. During the process, the person moves to the west. </p></td>
-    <td><p style="font-size:13px; "> A person walks backwards. During the process, the person moves to east, the person looks rightward backward. </p></td>
+    <td><p style="font-size:13px"> A person walks. During the process, the person moves to the north, his leftforarm moves to body's left front, left back repeatly. </p></td>
+    <td><p style="font-size:13px"> A person walks backwards and sits down on the chair. During the process, the person moves to the south, the person looks leftward backward. </p></td>
+    <td><p style="font-size:13px"> A person walks forward and does a handstand. During the process, the person moves to the west. </p></td>
+    <td><p style="font-size:13px"> A person walks backwards. During the process, the person moves to east, the person looks rightward backward. </p></td>
   </tr>
 </table>
 
