@@ -7,7 +7,7 @@
 
 <div>
     <b>Xin He </b> &emsp;
-    <b>Shaoli Huang </b> &emsp;
+    <b>Shaoli Huang* </b> &emsp;
     <b>Xiaohang Zhan </b>  <br>
     <b>Chao Weng </b> &emsp;
     <b>Ying Shan </b> &emsp;
