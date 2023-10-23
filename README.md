@@ -63,13 +63,13 @@ In this repo, we achieves the functions:
 ## 📰 Introduction of SemanticBoost
 
 <details>
-  <summary><b>Semantic Enhancement Module</b></summary>
-  <img src="figs/semantic.png">
+  <summary><b>Optimized Diffusion Model</b></summary>
+  <img src="figs/framework.png">
 </details>
 
 <details>
-  <summary><b>Optimized Diffusion Model</b></summary>
-  <img src="figs/framework.png">
+  <summary><b>Semantic Enhancement Module</b></summary>
+  <img src="figs/semantic.png">
 </details>
 
 <details>
@@ -163,6 +163,27 @@ python inference.py --prompt "120, A person walks forward and sits down on the c
 ```sh
 python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode cadm --size 1024 --render_mode pyrender_slow --tada_role "Iron Man"
 ```
+
+### Prompt Engineering
+
+
+1. **Normal sentences** -> (Length,) Sentence
+
+    - Example: 120, A person waks backwards and sits down on the chair.
+
+    - PS: If do not give length, the default setting is 196 frames.
+
+2. **Detail control with semantic enhancement** -> (Length,) Sentence. During the process, (the person moves to [position],) (the person looks [head orientation],) (his left forearm moves to [left forearm position]).
+
+    - Example: 120, A person walks. During the process, the person moves to the south, the person looks forward downward, then leftward backward, his left forearm moves to body's beside, then left front, left back repeatly.
+
+3. **Long motion synthesis with DoubleTake strategy** -> (Length1, ) Sentence1 | (Length2, ) Sentence2 | ...
+
+    - Example: 100, A person walks forward. | 120, A person dances in place. | 100, A person walks backwards.
+
+    - PS: It will synthesize with DoubleTake when "|" is in the sentences.
+
+
 
 </details>
 

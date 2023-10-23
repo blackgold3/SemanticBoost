@@ -16,7 +16,7 @@ def interface(prompt, mode="cadm", render_mode="pyrender", out_size=1024, tada_r
     name = "_".join(name.split("_")[:25])
     out_path = os.path.join("results/motion", name + ".mp4")
     gif_path = os.path.join("results/motion", name + ".gif")
-    joint_path = os.path.join("results/jo ints", name + ".npy")
+    joint_path = os.path.join("results/joints", name + ".npy")
     smpl_path = os.path.join("results/smpls", name + ".npy")
 
     '''
