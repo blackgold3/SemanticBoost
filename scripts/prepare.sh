@@ -1,3 +1,3 @@
 pip install huggingface_hub
-git install lfs
+git lfs install
 python scripts/prepare.py
