@@ -79,7 +79,7 @@ if __name__ == "__main__":
     parser.add_argument('--mode', type=str, default="cadm", choices=['cadm', 'cadm-augment', "mdm"], help="choose model")
     parser.add_argument("--render_mode", default="pyrender_slow", type=str, choices=["pyrender_slow", "pyrender_fast", "joints"])
     parser.add_argument("--size", default=1024, type=int)
-    parser.add_argument("--tada_role", default=None, type=str)
+    parser.add_argument("--tada_role", default="Batman", type=str)
     opt = parser.parse_args()
 
 
