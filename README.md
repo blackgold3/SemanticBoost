@@ -21,6 +21,8 @@
 
 ## 💡 Highlights
 
+![Alt text]((figs/teaser.png) "Our method")
+
 SemanticBoost framework consists of optimized diffusion model **CAMD** and **Semantic Enhancement Module** which describe specific body parts explicitly. With two modules, SemanticBoost can:
 
 - Synthesize more smooth and stable motion sequences.
