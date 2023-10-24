@@ -21,7 +21,7 @@
 
 ## 💡 Highlights
 
-![Alt text]((figs/teaser.png) "Our method")
+<img src="figs/teaser.png" alt="Alt text" title="Our method">
 
 SemanticBoost framework consists of optimized diffusion model **CAMD** and **Semantic Enhancement Module** which describe specific body parts explicitly. With two modules, SemanticBoost can:
 
