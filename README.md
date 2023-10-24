@@ -31,21 +31,6 @@ SemanticBoost framework consists of optimized diffusion model **CAMD** and **Sem
 
 <img src="figs/samples.gif"> 
 
-<!--<table>
-  <tr>
-    <td><img src="figs/north-left.gif"></td>
-    <td><img src="figs/south-back.gif"></td>
-    <td><img src="figs/west-hand.gif"></td>
-    <td><img src="figs/east-back.gif"></td>
-  </tr>
-  <tr align="center">
-    <td><span style="font-size:13px"> A person walks. During the process, the person moves to the north, his leftforarm moves to body's left front, left back repeatly. </span></td>
-    <td><span style="font-size:13px"> A person walks backwards and sits down on the chair. During the process, the person moves to the south, the person looks leftward backward. </span></td>
-    <td><span style="font-size:13px"> A person walks forward and does a handstand. During the process, the person moves to the west. </span></td>
-    <td><span style="font-size:13px"> A person walks backwards. During the process, the person moves to east, the person looks rightward backward. </p></td>
-  </tr>
-</table> -->
-
 ## ⚙ Applications
 
 
@@ -158,13 +143,19 @@ python app.py
 ### General Visualization
 
 ```sh
-python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode cadm --size 1024 --render_mode pyrender_slow
+python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode camd --size 1024 --render_mode pyrender_slow
+```
+
+### Detail Control and Visualization
+
+```sh
+python inference.py --prompt "120, A person walks backwards. During the process, the person moves to the south, the person looks leftward backward." --mode camd-augment --size 1024 --render_mode pyrender_slow
 ```
 
 ### TADA Visualization
 
 ```sh
-python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode cadm --size 1024 --render_mode pyrender_slow --tada_role "Iron Man"
+python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode camd --size 1024 --render_mode pyrender_slow --tada_role "Iron Man"
 ```
 
 ### Prompt Engineering
