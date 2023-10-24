@@ -105,7 +105,7 @@ class Visualize(nn.Module):
                     motion_tensor, translation = self.fit2smpl(joints, render_mode.split("_")[-1])
                     motion_tensor = np.concatenate([motion_tensor, translation], axis=1)
                     motion_tensor = motion_tensor.reshape(motion_tensor.shape[0], -1, 3)
-                    replace = [12, 15, 20, 21]
+                    replace = [12, 15, 18, 19, 20, 21]
                     motion_tensor[:, replace, :] = pose[:, replace, :]
                     motion_tensor = motion_tensor.reshape(motion_tensor.shape[0], -1)
             

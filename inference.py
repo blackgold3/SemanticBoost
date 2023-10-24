@@ -75,11 +75,11 @@ def interface(prompt, mode="cadm", render_mode="pyrender", out_size=1024, tada_r
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='visualize demo')
     ############################ basic_setings ########################
-    parser.add_argument('--prompt', type=str, default="120, A person walks forward and does a handstand.")
-    parser.add_argument('--mode', type=str, default="cadm", choices=['cadm', 'cadm-augment', "mdm"], help="choose model")
+    parser.add_argument('--prompt', type=str, default="120, A person walks while raising his right hand up. During the process, the person moves to the south, the person looks forward downward, his left forearm moves to body's left front up, left back up repeatly.")
+    parser.add_argument('--mode', type=str, default="cadm-augment", choices=['cadm', 'cadm-augment', "mdm"], help="choose model")
     parser.add_argument("--render_mode", default="pyrender_slow", type=str, choices=["pyrender_slow", "pyrender_fast", "joints"])
     parser.add_argument("--size", default=1024, type=int)
-    parser.add_argument("--tada_role", default="Batman", type=str)
+    parser.add_argument("--tada_role", default=None, type=str)
     opt = parser.parse_args()
 
 
