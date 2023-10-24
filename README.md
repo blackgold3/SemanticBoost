@@ -6,11 +6,11 @@
 
 
 <div>
-    <b>Xin He </b> &emsp;
-    <b>Shaoli Huang* </b> &emsp;
-    <b>Xiaohang Zhan </b>  <br>
-    <b>Chao Weng </b> &emsp;
-    <b>Ying Shan </b> &emsp;
+    <b><a href="https://github.com/blackgold3" target="_blank">Xin He</a></b> &emsp;
+    <b><a href="https://scholar.google.com/citations?user=o31BPFsAAAAJ&hl=en" target="_blank">Shaoli Huang<sup>*</sup></a> &emsp;
+    <b><a href="https://xiaohangzhan.github.io/" target="_blank">Xiaohang Zhan</a><br></b>  <br>
+    <b><a href="https://scholar.google.com/citations?user=pRA19-8AAAAJ&hl=en" target="_blank">Chao Weng</a></b> &emsp;
+    <b><a href="https://scholar.google.com/citations?user=4oXBp9UAAAAJ&hl=zh-TW" target="_blank">Ying Shan</a></b> &emsp;
 </div>
 <br>
 
