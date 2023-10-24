@@ -29,8 +29,11 @@ SemanticBoost framework consists of optimized diffusion model **CAMD** and **Sem
 - Understand longer and more complex sentences.
 - Control specific body parts precisely
 
+<video controls loop>
+  <source src="figs/samples.mov" type="video/mp4">
+</video>
 
-<table>
+<!--<table>
   <tr>
     <td><img src="figs/north-left.gif"></td>
     <td><img src="figs/south-back.gif"></td>
@@ -43,7 +46,7 @@ SemanticBoost framework consists of optimized diffusion model **CAMD** and **Sem
     <td><span style="font-size:13px"> A person walks forward and does a handstand. During the process, the person moves to the west. </span></td>
     <td><span style="font-size:13px"> A person walks backwards. During the process, the person moves to east, the person looks rightward backward. </p></td>
   </tr>
-</table>
+</table> -->
 
 ## ⚙ Applications
 
