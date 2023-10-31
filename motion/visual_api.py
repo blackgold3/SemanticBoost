@@ -20,10 +20,9 @@ from TADA.anime import Animation
 class Visualize(nn.Module):
     def __init__(self, **kargs):
         super(Visualize, self).__init__()
-        self.mode = kargs.get("mode", "cadm")
-        if self.mode in ["mdm", "cadm", "cadm-augment"]:
-            self.predictor = mdm_predictor(**kargs)
-            self.rep = self.predictor.rep
+        self.mode = kargs.get("mode", "camd")
+        self.predictor = mdm_predictor(**kargs)
+        self.rep = self.predictor.rep
         self.smpl_path = kargs.get("smpl_path")
         self.device = kargs.get("device", "cpu")
         self.rotate = kargs.get("rotate", 0)
@@ -58,59 +57,44 @@ class Visualize(nn.Module):
         return motion_tensor, translation
 
     def predict(self, sentence, path, render_mode="pyrender", joint_path=None, smpl_path=None):
-        if self.mode == "pose":
-            motion_tensor = np.load(path)
+        motion_tensor = self.predictor.predict(sentence, 1, path)
+        if self.rep == "t2m":
+            motion_tensor = motion_tensor[0].detach().cpu().numpy()         #### [nframes, 263]
+
+            if joint_path is not None:
+                np.save(joint_path, motion_tensor)
+
             if render_mode == "joints":
-                _, joints = self.get_mesh(motion_tensor)
-                motion_tensor = joints
-                
-        elif self.mode == "joints":
-            joints = np.load(path)
+                motion_tensor = motion_tensor
+            else:
+                motion_tensor, translation = self.fit2smpl(motion_tensor, render_mode.split("_")[-1])
+                motion_tensor = np.concatenate([motion_tensor, translation], axis=1)    
+                motion_tensor = motion_tensor.reshape(motion_tensor.shape[0], -1)
+
+            if smpl_path is not None:
+                np.save(smpl_path, motion_tensor)
+
+        elif self.rep == "smr":
+            motion_tensor = motion_tensor[0][0].detach().cpu().numpy()
+            joints = recover_from_ric(motion_tensor, 22)
+
+            if joint_path is not None:
+                np.save(joint_path, joints)
+
             if render_mode == "joints":
                 motion_tensor = joints
             else:
+                pose = recover_pose_from_smr(motion_tensor, 22)
+                pose = pose.reshape(pose.shape[0], -1, 3)
                 motion_tensor, translation = self.fit2smpl(joints, render_mode.split("_")[-1])
                 motion_tensor = np.concatenate([motion_tensor, translation], axis=1)
-                motion_tensor = motion_tensor.reshape(motion_tensor.shape[0], -1)   
-        elif self.mode in ["mdm", "cadm", "cadm-augment"]:
-            motion_tensor = self.predictor.predict(sentence, 1, path)
-            if self.rep == "t2m":
-                motion_tensor = motion_tensor[0].detach().cpu().numpy()         #### [nframes, 263]
-
-                if joint_path is not None:
-                    np.save(joint_path, motion_tensor)
-
-                if render_mode == "joints":
-                    motion_tensor = motion_tensor
-                else:
-                    motion_tensor, translation = self.fit2smpl(motion_tensor, render_mode.split("_")[-1])
-                    motion_tensor = np.concatenate([motion_tensor, translation], axis=1)    
-                    motion_tensor = motion_tensor.reshape(motion_tensor.shape[0], -1)
-
-                if smpl_path is not None:
-                    np.save(smpl_path, motion_tensor)
-
-            elif self.rep == "smr":
-                motion_tensor = motion_tensor[0][0].detach().cpu().numpy()
-                joints = recover_from_ric(motion_tensor, 22)
-
-                if joint_path is not None:
-                    np.save(joint_path, joints)
-
-                if render_mode == "joints":
-                    motion_tensor = joints
-                else:
-                    pose = recover_pose_from_smr(motion_tensor, 22)
-                    pose = pose.reshape(pose.shape[0], -1, 3)
-                    motion_tensor, translation = self.fit2smpl(joints, render_mode.split("_")[-1])
-                    motion_tensor = np.concatenate([motion_tensor, translation], axis=1)
-                    motion_tensor = motion_tensor.reshape(motion_tensor.shape[0], -1, 3)
-                    replace = [12, 15, 18, 19, 20, 21]
-                    motion_tensor[:, replace, :] = pose[:, replace, :]
-                    motion_tensor = motion_tensor.reshape(motion_tensor.shape[0], -1)
-            
-                if smpl_path is not None:
-                    np.save(smpl_path, motion_tensor)
+                motion_tensor = motion_tensor.reshape(motion_tensor.shape[0], -1, 3)
+                replace = [12, 15, 18, 19, 20, 21]
+                motion_tensor[:, replace, :] = pose[:, replace, :]
+                motion_tensor = motion_tensor.reshape(motion_tensor.shape[0], -1)
+        
+            if smpl_path is not None:
+                np.save(smpl_path, motion_tensor)
 
         return motion_tensor.astype(np.float32)
 

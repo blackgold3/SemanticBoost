@@ -69,6 +69,8 @@ In this repo, we achieves the functions:
 
 [2023/10/20] **Release pretrained weights and inference process 🔥**
 
+[2023/10/27] **Release new pretrained weights and tensorRT speedup**
+
 ## ⚡️ Quick Start
 
 <details>
@@ -80,23 +82,17 @@ In this repo, we achieves the functions:
 python install -r requirements.txt
 ```
 
-### 2. Linux Package - Centos
-```sh
-yum update
-yum install mesa*
-```
-
-### 3. Linux Package - Debian
+### 2. Linux Package - Debian (EGL package for render)
 ```sh
 sudo apt-get install freeglut3-dev
 ```
 
-### 4. Pretrained Weights
+### 3. Pretrained Weights
 ```sh
 bash scripts/prepare.sh
 ```
 
-### 5. (Optional) TADA Support
+### 4. (Optional) TADA Support
 
 - Download Choice 1
 
@@ -119,6 +115,29 @@ bash scripts/prepare.sh
   bash scripts/tada_goole.sh
   ```
 
+### 5. (Optional) TensorRT Inference
+
+- Download TensorRT SDK, we test with TensorRT-8.6.0 and pytorch 2.0.1
+  > https://developer.nvidia.com/nvidia-tensorrt-8x-download
+
+- Set environment
+
+  ```sh
+  export LD_LIBRARY_PATH=/data/TensorRT-8.6.0.12/lib:$LD_LIBRARY_PATH
+  export PATH=/data/TensorRT-8.6.0.12/bin:$PATH
+  ```
+
+- Install python api
+
+  ```sh
+  pip install /data/TensorRT-8.6.0.12/python/tensorrt-8.6.0-cp39-none-linux_x86_64.whl
+  ```
+
+- Export TensorRT engine
+
+  ```sh
+  bash scripts/quanti.sh
+  ```
 
 </details>
 
@@ -143,19 +162,19 @@ python app.py
 ### General Visualization
 
 ```sh
-python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode camd --size 1024 --render_mode pyrender_slow
-```
 
-### Detail Control and Visualization
+#### speedup = 1 infer with TensorRT speedup = 0 load torch model
 
-```sh
-python inference.py --prompt "120, A person walks backwards. During the process, the person moves to the south, the person looks leftward backward." --mode camd-augment --size 1024 --render_mode pyrender_slow
+python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode ncamd --size 1024 --render_mode pyrender_slow --speedup 1
 ```
 
 ### TADA Visualization
 
 ```sh
-python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode camd --size 1024 --render_mode pyrender_slow --tada_role "Iron Man"
+
+######## More tada_role please refer to TADA-100
+
+python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode ncamd --size 1024 --render_mode pyrender_slow --tada_role "Iron Man" --speedup 1
 ```
 
 ### Prompt Engineering

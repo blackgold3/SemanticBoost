@@ -13,14 +13,23 @@ class MDM(nn.Module):
                  arch='trans_enc', clip_version=None, **kargs):
         super().__init__()
 
+        self.local = kargs["local"]
         self.encode_full = kargs.get("encode_full", 0)      #### encode_full = 1 add tokens  & encode_full = 2 model compress tokens
         self.txt_tokens = kargs.get("txt_tokens", 0)    #### txt_tokens = 1 add tokens  & txt_tokens = 2 model compress tokens
-        self.frame_mask = kargs.get("frame_mask", 0)
         self.dataset = dataset
         self.condition_length = 77
         self.num_frames = kargs.get("num_frames", 196)
-        self.position_type = "static"     #### static or rope  only for llama arch
         self.json_dict = kargs.get("json_dict")
+
+        if arch.endswith("static"):
+            self.position_type = "static"     #### [static or rope]  only for llama arch
+            self.arch = arch.replace("_static", "")
+        elif arch.endswith("rope"):
+            self.position_type = "rope"
+            self.arch = arch.replace("_rope", "")
+        else:
+            self.position_type = "static"
+            self.arch = arch
 
         if isinstance(self.num_frames, list) or isinstance(self.num_frames, tuple):
             self.num_frames = self.num_frames[0]
@@ -43,7 +52,7 @@ class MDM(nn.Module):
 
         self.cond_mode = kargs.get('cond_mode', 'no_cond')
         self.cond_mask_prob = kargs.get('cond_mask_prob', 0.)
-        self.arch = arch
+
 
         self.input_process = InputProcess(self.input_feats, self.latent_dim)    #### 输入 x 的 linear
         self.output_process = OutputProcess(self.input_feats, self.latent_dim, self.njoints,
@@ -60,20 +69,12 @@ class MDM(nn.Module):
                                                             activation=self.activation)
             self.seqTransEncoder = nn.TransformerEncoder(seqTransEncoderLayer, num_layers=self.num_layers)
 
-        elif self.arch == "refined_encoder":
-            TransLayer = RefinedLayer(self.latent_dim, self.num_heads, self.ff_size, self.dropout, self.activation, max_seq_len=self.num_frames, norm_type="rmsnorm")
-            self.seqTransEncoder = Refined_Transformer(TransLayer, self.num_layers)
-
-        elif self.arch == "refined_decoder":
-            TransLayer = RefinedLayer(self.latent_dim, self.num_heads, self.ff_size, self.dropout, self.activation, max_seq_len=self.num_frames, word_tokens=True, norm_type="rmsnorm")
-            self.seqTransEncoder = Refined_Transformer(TransLayer, self.num_layers)
-
         elif self.arch == "llama_encoder":
-            TransLayer = RefinedLayer(self.latent_dim, self.num_heads, self.ff_size, self.dropout, self.activation, max_seq_len=self.num_frames, position_type=self.position_type, norm_type="rmsnorm", attention_type="llama")
+            TransLayer = RefinedLayer(self.latent_dim, self.num_heads, self.ff_size, self.dropout, self.activation, max_seq_len=self.num_frames, position_type=self.position_type, norm_type="rmsnorm")
             self.seqTransEncoder = Refined_Transformer(TransLayer, self.num_layers)
 
         elif self.arch == "llama_decoder":
-            TransLayer = RefinedLayer(self.latent_dim, self.num_heads, self.ff_size, self.dropout, self.activation, max_seq_len=self.num_frames, position_type=self.position_type, word_tokens=True, norm_type="rmsnorm", attention_type="llama")
+            TransLayer = RefinedLayer(self.latent_dim, self.num_heads, self.ff_size, self.dropout, self.activation, max_seq_len=self.num_frames, position_type=self.position_type, word_tokens=True, norm_type="rmsnorm")
             self.seqTransEncoder = Refined_Transformer(TransLayer, self.num_layers)
 
         else:
@@ -90,29 +91,30 @@ class MDM(nn.Module):
                 self.clip_model = self.load_and_freeze_clip(clip_version)
 
                 if self.txt_tokens == 2:
-                    if self.arch in ["refined_encoder", "trans_enc", "llama_encoder"]:
+                    if self.arch in ["trans_enc", "llama_encoder"]:
                         scale = 3
-                    elif self.arch in ["refined_decoder", "llama_decoder"]:
+                    elif self.arch in ["llama_decoder"]:
                         scale = 2
+
                     encode_compress_layer = RefinedLayer(d_model=self.latent_dim * scale,
                                                                     nhead=self.num_heads,
                                                                     dim_feedforward=self.ff_size,
                                                                     dropout=self.dropout,
-                                                                    activation=self.activation)
+                                                                    activation=self.activation, norm_type="rmsnorm")
                     self.condition_compress = nn.Sequential(
                         Refined_Transformer(encode_compress_layer, num_layers=1),
                         nn.Linear(self.latent_dim * scale, self.latent_dim, )
                     )       
 
         if self.encode_full != 0: ####  [1, bs, 512] -> [seq, bs, 1024] -> [seq, bs, 512]
-            self.code_full = Encoder_Block(begin_channel=self.input_feats, latent_dim=self.latent_dim, num_layers=6, TN=1)      
+            self.code_full = Encoder_Block(begin_channel=self.input_feats, latent_dim=self.latent_dim, num_layers=6, TN=1, bias=kargs["conv_bias"], norm_type=kargs["conv_norm"], activate_type=kargs["conv_activate"])      
 
             if self.encode_full == 2:
                 encode_compress_layer = RefinedLayer(d_model=self.latent_dim * 2,
                                                                 nhead=self.num_heads,
                                                                 dim_feedforward=self.ff_size,
                                                                 dropout=self.dropout,
-                                                                activation=self.activation)
+                                                                activation=self.activation, norm_type="rmsnorm")
 
                 self.encode_compress = nn.Sequential(
                     Refined_Transformer(encode_compress_layer, num_layers=1),
@@ -126,8 +128,8 @@ class MDM(nn.Module):
 
     def load_and_freeze_clip(self, clip_version):
         clip_model, clip_preprocess = clip.load(clip_version, device='cpu', jit=False, download_root=self.json_dict["clip"])  # Must set jit=False for training
-        clip.model.convert_weights(clip_model)  # Actually this line is unnecessary since clip by default already on float16
         clip_model.float()
+    
         # Freeze CLIP weights
         clip_model.eval()
         for p in clip_model.parameters():
@@ -149,24 +151,6 @@ class MDM(nn.Module):
         else:
             return cond
 
-    def mask_motion(self, motion):
-        # x: [batch_size, njoints, nfeats, max_frames], denoted x_t in the paper
-
-        if self.training and self.frame_mask > 0.:
-            pair_motion = torch.randperm(motion.shape[0])
-            pair_motion = motion[pair_motion]
-            if len(motion.shape) == 4:
-                bs, njoints, nfeats, nframes = motion.shape
-                mask = torch.bernoulli(torch.ones([bs, 1, 1, nframes], device=motion.device) * self.frame_mask)  # 1-> use null_cond, 0-> use real cond
-                mask = mask.repeat(1, njoints, nfeats, 1)
-            elif len(motion.shape) == 3:
-                seqlen, bs, latent_dim = motion.shape
-                mask = torch.bernoulli(torch.ones([seqlen, bs, 1], device=motion.device) * self.frame_mask) 
-                mask = mask.repeat(1, 1, latent_dim)
-            return motion * (1. - mask) + pair_motion * mask
-        else:
-            return motion
-
     def clip_text_embedding(self, raw_text):
         device = self.clip_model.ln_final.weight.device
         default_context_length = self.condition_length
@@ -175,12 +159,12 @@ class MDM(nn.Module):
             clip_feature = self.clip_model.encode_text(texts)
         else:
             with torch.no_grad():
-                x = self.clip_model.token_embedding(texts).type(self.clip_model.dtype)  # [batch_size, n_ctx, d_model]
-                x = x + self.clip_model.positional_embedding.type(self.clip_model.dtype)
+                x = self.clip_model.token_embedding(texts)  # [batch_size, n_ctx, d_model]
+                x = x + self.clip_model.positional_embedding
                 x = x.permute(1, 0, 2)  # NLD -> LND
                 x = self.clip_model.transformer(x)
                 x = x.permute(1, 0, 2)  # LND -> NLD
-                x = self.clip_model.ln_final(x).type(self.clip_model.dtype)
+                x = self.clip_model.ln_final(x)
                 clip_feature = x[torch.arange(x.shape[0]), texts.argmax(dim=-1)] @ self.clip_model.text_projection
             clip_feature = clip_feature.unsqueeze(1)
             clip_feature = torch.cat([clip_feature, x], dim=1)     #### [bs, T, 512]
@@ -198,14 +182,13 @@ class MDM(nn.Module):
         x: [batch_size, njoints, nfeats, max_frames], denoted x_t in the paper
         timesteps: [batch_size] (int)
         """
-
+        
         results = {}
         emb = self.embed_timestep(timesteps)  # [1, bs, d]
         x = x.to(emb.dtype)
 
-        x = self.mask_motion(x)
-
         real_length = x.shape[-1]
+
         if self.encode_full != 0 and x.shape[-1] < self.num_frames:
             extension = torch.zeros([x.shape[0], x.shape[1], x.shape[2], self.num_frames - x.shape[-1]], device=x.device, dtype=x.dtype)
             x = torch.cat([x, extension], dim=-1)
@@ -242,7 +225,7 @@ class MDM(nn.Module):
         else:
             all_emb = torch.zeros_like(emb)
 
-        if self.arch in ["refined_encoder", "trans_enc", "llama_encoder"] and txt_emb is not None:
+        if self.arch in ["trans_enc", "llama_encoder"] and txt_emb is not None:
             if self.txt_tokens == 1:
                 word_embedding = all_emb[1::, :, :]
                 global_embedding = all_emb[0:1, :, :].repeat(word_embedding.shape[0], 1, 1)
@@ -271,25 +254,28 @@ class MDM(nn.Module):
             emb = emb.repeat(all_emb.shape[0], 1, 1)
             emb += all_emb
 
-        if self.arch in ["trans_enc", "refined_encoder", "llama_encoder"]:
+        if self.arch in ["trans_enc", "llama_encoder"]:
             real_token_length = emb.shape[0]           ######### 用来截断输出，只保留真正的output
-        elif self.arch in ["refined_decoder", "llama_decoder"]:
+        elif self.arch in ["llama_decoder"]:
             real_token_length = 1
 
-        if self.arch in ["trans_enc", "refined_encoder", "llama_encoder"]:
+        if self.arch in ["trans_enc", "llama_encoder"]:
             xseq = torch.cat([emb, current], dim=0)
 
-            if self.arch in ["trans_enc", "refined_encoder"] or self.position_type == "static":
+            if self.arch in ["trans_enc"] or self.position_type == "static":
                 xseq = self.sequence_pos_encoder(xseq)
 
             output = self.seqTransEncoder(xseq)
-        elif self.arch in ["refined_decoder", "llama_decoder"]:
+
+        elif self.arch in ["llama_decoder"]:
+            if emb.shape[0] == 1:
+                emb = emb.repeat(1+self.condition_length, 1, 1)
+
             xseq = torch.cat([emb[0:1], current], dim=0)
             word_tokens = emb[1::]
 
-            if self.arch in ["refined_decoder"] or self.position_type == "static":
+            if self.position_type == "static":
                 xseq = self.sequence_pos_encoder(xseq)
-                # word_tokens = self.sequence_pos_encoder(word_tokens)
                 
             output = self.seqTransEncoder(xseq, word_tokens=word_tokens)
 

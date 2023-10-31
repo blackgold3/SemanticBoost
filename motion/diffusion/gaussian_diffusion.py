@@ -473,8 +473,8 @@ class GaussianDiffusion:
                     _prefix = sample['sample'][sample_i, :, :, :unfolding_handshake]
                     try:
                         _blend = (_suffix * (1 - alpha) + _prefix * alpha)
-                    except(RuntimeError):
-                        print("Error")
+                    except Exception as e:
+                        print(e)
                     sample['sample'][sample_i - 1, :, :, -unfolding_handshake + len:len] = _blend       #### 混合操作，保证下一帧的 left = 这一帧的 right, 这样 double take 的时候才能直接用 right 覆盖 left
                     sample['sample'][sample_i, :, :, :unfolding_handshake] = _blend
 
@@ -515,7 +515,10 @@ class GaussianDiffusion:
         p_sample().
         """
         if device is None:
-            device = next(model.parameters()).device
+            try:
+                device = model.device
+            except:
+                device = next(model.parameters()).device
         assert isinstance(shape, (tuple, list))
         
         if noise is not None:

@@ -42,7 +42,7 @@ class ResConv1DBlock(nn.Module):
         return x
 
 class Encoder_Block(nn.Module):
-    def __init__(self, begin_channel=263, latent_dim=512, num_layers=6, TN=1, bias=False, norm_type="rmsnorm", activate_type="silu"):
+    def __init__(self, begin_channel=263, latent_dim=512, num_layers=6, TN=1, bias=True, norm_type="layernorm", activate_type="relu"):
         super(Encoder_Block, self).__init__()
         self.layers = []
 

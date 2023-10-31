@@ -75,11 +75,11 @@ def demo(prompt, mode, condition, render_mode="joints", skip_steps=0, out_size=1
         vid = mpy.ImageSequenceClip([x[:, :, :] for x in pics], fps=20)
         vid.write_videofile(out_path, remove_temp=True)
 
-        if mode[i] == "cadm":
+        if mode[i] == "camd":
             out_paths[0] = out_path
             joints_paths[0] = joint_path
             smpl_paths[0] = smpl_path
-        elif mode[i] == "cadm-augment":
+        elif mode[i] == "camd-augment":
             out_paths[1] = out_path
             joints_paths[1] = joint_path
             smpl_paths[1] = smpl_path
@@ -116,7 +116,7 @@ def t2m_demo():
                     with gr.TabItem('Settings'):
                         with gr.Column(variant='panel'):
                             with gr.Row():
-                                demo_mode = gr.CheckboxGroup(choices=['cadm', 'cadm-augment','mdm'], default=["cadm"], label='Mode', info="Choose models to run demos, more models cost more time.")
+                                demo_mode = gr.CheckboxGroup(choices=['camd', 'camd-augment','mdm'], default=["camd"], label='Mode', info="Choose models to run demos, more models cost more time.")
                                 skip_steps = gr.Number(value=0, label="Skip-Steps", info="The number of skip-steps during diffusion process (0 -> 999)", minimum=0, maximum=999, precision=0)
 
                             with gr.Row():
@@ -137,17 +137,17 @@ def t2m_demo():
                     with gr.TabItem('Results'):
                         with gr.Row():
                             with gr.Column():
-                                gen_video = gr.Video(label="CADM", format="mp4", autoplay=True, elem_classes="ov")
+                                gen_video = gr.Video(label="CAMD", format="mp4", autoplay=True, elem_classes="ov")
                             with gr.Column():
-                                joint_file = gr.File(label="CADM-Joints", value=None, elem_classes="dfile")
-                                smpl_file = gr.File(label="CADM-SMPL", value=None, elem_classes="dfile")
+                                joint_file = gr.File(label="CAMD-Joints", value=None, elem_classes="dfile")
+                                smpl_file = gr.File(label="CAMD-SMPL", value=None, elem_classes="dfile")
 
                         with gr.Row():
                             with gr.Column():
-                                gen_video1 = gr.Video(label="CADM-Augment", format="mp4", autoplay=True, elem_classes="ov")
+                                gen_video1 = gr.Video(label="CAMD-Augment", format="mp4", autoplay=True, elem_classes="ov")
                             with gr.Column():
-                                joint_file1 = gr.File(label="CADM-Augment-Joints", value=None, elem_classes="dfile")
-                                smpl_file1 = gr.File(label="CADM-Augment-SMPL", value=None, elem_classes="dfile")
+                                joint_file1 = gr.File(label="CAMD-Augment-Joints", value=None, elem_classes="dfile")
+                                smpl_file1 = gr.File(label="CAMD-Augment-SMPL", value=None, elem_classes="dfile")
                                 
                         with gr.Row():
                             with gr.Column():

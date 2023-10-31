@@ -1,13 +1,48 @@
 from motion.model.mdm import MDM
 from motion.diffusion import gaussian_diffusion as gd
 from motion.diffusion.respace import SpacedDiffusion, space_timesteps, InpaintingGaussianDiffusion
+from motion.model.trt_model import TRT_MDM
 
-def load_model_wo_clip(model, state_dict):
+def load_model_wo_clip(model, state_dict): 
     print("load model checkpoints without clip")
-    missing_keys, unexpected_keys = model.load_state_dict(state_dict, strict=False)
+
+    try:
+        new_state_dict = {}
+        for key, value in state_dict.items():
+            if "in_proj" in key:
+                keyq = key.replace("in_proj_weight", "wq.weight")
+                keyk = key.replace("in_proj_weight", "wk.weight")
+                keyv = key.replace("in_proj_weight", "wv.weight")
+                inshape = value.shape[0] // 3
+                valueq = value[:inshape]
+                valuek = value[inshape:inshape * 2]
+                valuev = value[inshape * 2:]
+
+                new_state_dict[keyq] = valueq
+                new_state_dict[keyk] = valuek
+                new_state_dict[keyv] = valuev
+
+            elif "out_proj" in key:
+                newkey = key.replace("out_proj", "wo")
+                new_state_dict[newkey] = value
+            
+            else:
+                new_state_dict[key] = value
+        
+        missing_keys, unexpected_keys = model.load_state_dict(new_state_dict, strict=False)
+    except:
+        missing_keys, unexpected_keys = model.load_state_dict(state_dict, strict=False)
 
     print(unexpected_keys)
+
+    other_miss = []
+    for key in missing_keys:
+        if not key.startswith('clip_model.'):
+            other_miss.append(key)
+
+    print(other_miss)
     assert all([k.startswith('clip_model.') for k in missing_keys])
+
 
 def load_ft_model_wo_clip(model, state_dict):
     print("load model checkpoints without clip")
@@ -28,6 +63,12 @@ def create_model_and_diffusion(args, mode="text", json_dict=None):
     diffusion = create_gaussian_diffusion(args, mode)
     return model, diffusion
 
+def create_trt_model(args, model, mode="text", json_dict=None, device="cuda"):
+    model = TRT_MDM(model, json_dict, device=device)
+    diffusion = create_gaussian_diffusion(args, mode)
+    return model, diffusion
+
+
 def get_model_args(args):
     # default args
     clip_version = 'ViT-B/32'
@@ -36,10 +77,7 @@ def get_model_args(args):
     elif args.dataset in ['kit', 'humanml']:
         cond_mode = "text"
      
-    if args.arch in ["refined_encoder", "refined_decoder"]:
-        activation = "swiglu"
-    else:
-        activation = "gelu"
+    activation = args.trans_activate if args.arch != "trans_enc" else "gelu"
 
     if args.dataset == 'humanml':
         njoints = 263
@@ -55,7 +93,8 @@ def get_model_args(args):
     return {'njoints': njoints, 'nfeats': nfeats, 'latent_dim': args.latent_dim, 'ff_size': args.ff_size, 'num_layers': args.layers, 'num_heads': args.heads,
             'dropout': 0.1, 'activation': activation, 'cond_mode': cond_mode, 'cond_mask_prob': args.cond_mask_prob, 'arch': args.arch,
             'clip_version': clip_version, 'dataset': args.dataset, "local":args.local, "encode_full":args.encode_full, "txt_tokens":args.txt_tokens,
-            "num_frames":args.num_frames, "frame_mask":args.frame_mask}
+            "dataset_path":args.dataset_path, "num_frames":args.num_frames, "conv_bias":args.conv_bias, "conv_activate":args.conv_activate, 
+            "conv_norm":args.conv_norm}
 
 
 def create_gaussian_diffusion(args, mode="text"):

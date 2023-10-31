@@ -1,11 +1,23 @@
 {
     "smpl_path":"body_models",
-    "cadm":"weights/refined_decoder_norm.pth",
-    "cadm-augment":"weights/refined_decoder_augment.pth",
+    "ncamd":"weights/llama_decoder_norm.pth",
+    "ncamd-augment":"weights/llama_decoder_augment.pth",
+    "camd":"weights/refined_decoder_norm.pth",
+    "camd-augment":"weights/refined_decoder_augment.pth",
     "mdm":"weights/given_mdm.pt",
     "dataset_dir":"motion/dataset",
     "joints2smpl":"SMPLX/visualize_joint2smpl/joints2smpl/smpl_models",
     "clip":"weights/",
     "config":"motion/sample_config.json",
-    "tada_base":"tada-extend"
+    "tada_base":"tada-extend",
+    "camd1":"midfile/camd_decoder.engine",
+    "camd2":"midfile/camd_clip.engine",
+    "ncamd1":"midfile/ncamd_decoder.engine",
+    "ncamd2":"midfile/ncamd_clip.engine",
+    "camd-augment1":"midfile/camd-augment_decoder.engine",
+    "camd-augment2":"midfile/camd-augment_clip.engine",
+    "ncamd-augment1":"midfile/ncamd-augment_decoder.engine",
+    "ncamd-augment2":"midfile/ncamd-augment_clip.engine",
+    "smpl2fbx_m":"motion/dataset/SMPL_m_unityDoubleBlends_lbs_10_scale5_207_v1.0.0.fbx",
+    "smpl2fbx_f":"motion/dataset/SMPL_f_unityDoubleBlends_lbs_10_scale5_207_v1.0.0.fbx"
 }

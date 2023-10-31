@@ -6,7 +6,7 @@ import h5py
 from SMPLX.visualize_joint2smpl.joints2smpl.src.smplify import SMPLify3D
 from tqdm import tqdm
 import argparse
-
+from motion.dataset.smooth import bezier_smooth
 
 class joints2smpl:
 
@@ -17,8 +17,9 @@ class joints2smpl:
         self.batch_size = num_frames
         self.num_joints = 22  # for HumanML3D
         self.joint_category = "AMASS"
-        self.num_smplify_iters = 100
+        self.num_smplify_iters = 15
         self.fix_foot = False
+        
         smplmodel = smplx.create(self.smpl_dir, model_type="smpl", gender="neutral", ext="pkl",
                                  batch_size=self.batch_size).to(self.device)
 
@@ -33,7 +34,6 @@ class joints2smpl:
 
         # # #-------------initialize SMPLify
         self.smplify = SMPLify3D(smplxmodel=smplmodel,
-                            batch_size=self.batch_size,
                             joints_category=self.joint_category,
                             num_iters=self.num_smplify_iters,
                             device=self.device)
@@ -92,18 +92,17 @@ class joints2smpl:
         else:
             print("Such category not settle down!")
 
-        new_opt_vertices, new_opt_joints, new_opt_pose, new_opt_betas, \
-        new_opt_cam_t, new_opt_joint_loss = self.smplify(
+        new_opt_pose = self.smplify(
             pred_pose.detach(),
             pred_betas.detach(),
             pred_cam_t.detach(),
             keypoints_3d,
             conf_3d=confidence_input.to(self.device),
-            # seq_ind=idx
         )
 
         thetas = new_opt_pose.reshape(self.batch_size, 24 * 3)
         vecs = thetas.detach().cpu().numpy()
+
         return vecs, root_loc
 
 
