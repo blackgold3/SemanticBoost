@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>SemanticBoost</title>
+  <link rel="icon" type="image/x-icon" href="static/images/motion-sensor.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">SemanticBoost: Elevating Motion Generation with Augmented Textual Cues</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://github.com/blackgold3" target="_blank">Xin He,</a>
+                <a href="https://scholar.google.com/citations?user=o31BPFsAAAAJ&hl=en" target="_blank">Shaoli Huang<sup>*</sup>,</a>
+                <a href="https://xiaohangzhan.github.io/" target="_blank">Xiaohang Zhan,</a><br>
+                <a href="https://scholar.google.com/citations?user=pRA19-8AAAAJ&hl=en" target="_blank">Chao Weng,</a>
+                <a href="https://scholar.google.com/citations?user=4oXBp9UAAAAJ&hl=zh-TW" target="_blank">Ying Shan</a>
+              </span>
+                  </div>
+                
+                <br>
+                  
+                  <div class="is-size-5 publication-authors">
+                    <a href="https://ai.tencent.com/ailab/zh/index"><img src='figs/ailab.png' width=120></a>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="ai ai-arxiv"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link -->
+                    <span class="link-block">
+                      <a href="https://huggingface.co/spaces/Kleinhe/SemanticBoost" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-play"></i>
+                      </span>
+                      <span>Huggingface</span>
+                    </a>
+                  </span>
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/blackgold3/SemanticBoost" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://discord.gg/rrayYqZ4tf" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-discord"></i>
+                  </span>
+                  <span>Discord</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <hr>
+      <img src="figs/tear.png"> <br>
+      <img src="figs/samples.gif"> <br>
+      <hr>
+    </div>
+  </div>
+
+</section>
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Current techniques face difficulties in generating motions from intricate semantic descriptions, primarily due to insufficient semantic annotations in datasets and weak contextual understanding. To address these issues, we present SemanticBoost, a novel framework that tackles both challenges simultaneously. Our framework comprises a Semantic Enhancement module and a Context-Attuned Motion Denoiser (CAMD). The Semantic Enhancement module extracts supplementary semantics from motion data, enriching the dataset's textual description and ensuring precise alignment between text and motion data without depending on large language models. On the other hand, the CAMD approach provides an all-encompassing solution for generating high-quality, semantically consistent motion sequences by effectively capturing context information and aligning the generated motion with the given textual descriptions.
+            Distinct from existing methods, our approach can synthesize accurate orientational movements, combined motions based on specific body part descriptions, and motions generated from complex, extended sentences. Our experimental results demonstrate that SemanticBoost, as a diffusion-based method, outperforms auto-regressive-based techniques, achieving cutting-edge performance on the Humanml3D dataset while maintaining realistic and smooth motion generation quality.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Paper Method -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Methodology</h2>
+        <div class="content has-text-justified">
+          <p>
+            SemanticBoost framework consists of optimized diffusion model <b>CAMD</b> and <b>Semantic Enhancement Module</b> which describe specific body parts explicitly. With two modules, SemanticBoost can:
+            <ul>
+              <li>Synthesize more smooth and stable motion sequences.</li>
+              <li>Understand longer and more complex sentences.</li>
+              <li>Control specific body parts precisely</li>
+            </ul>
+          </p>
+          
+          CAMD is an optimized diffusion model based on baseline MDM: <br><br>
+          <img src="figs/framework.png" alt="MY ALT TEXT"/> <br><br>
+
+          Semantic Enhancement extracts more details from ground truth data and translate the details into descriptions: <br><br>
+          <img src="figs/semantic.png" alt="MY ALT TEXT"/>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Paper Method -->
+
+<!-- Results -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Experiments Results</h2>
+        <div class="content has-text-justified">
+          <img src="figs/results.png" alt="MY ALT TEXT"/> 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Results -->
+
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered has-text-centered"><div class="column is-four-fifths"><h2 class="title is-3">More Results</h2></div></div>
+      <div id="results-carousel" class="carousel results-carousel">
+       <div class="item">
+        <!-- Your image here -->
+        <img src="figs/hand.gif" alt="MY ALT TEXT" width="500" height="500" style="display:block; margin:auto;"/>
+        <h2 class="subtitle has-text-centered">
+          A person walks forward and does a handstand.
+        </h2>
+      </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img src="figs/tie.gif" alt="MY ALT TEXT" width="500" height="500" style="display:block; margin:auto;"/>
+        <h2 class="subtitle has-text-centered">
+          A person ties the shoe, then stands up and walks forward.
+        </h2>
+      </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img src="figs/violin.gif" alt="MY ALT TEXT" width="500" height="500" style="display:block; margin:auto;"/>
+        <h2 class="subtitle has-text-centered">
+          A person plays a violin with his left hand in the air and their right hand holding the bow.
+       </h2>
+     </div>
+     <div class="item">
+      <!-- Your image here -->
+      <img src="figs/swim.gif" alt="MY ALT TEXT" width="500" height="500" style="display:block; margin:auto;"/>
+      <h2 class="subtitle has-text-centered">
+        A person walks forward and stops, then begins to swim.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="figs/long.gif" alt="MY ALT TEXT" width="500" height="500" style="display:block; margin:auto;"/>
+      <h2 class="subtitle has-text-centered">
+        A man starts off in an upright position with both arms extended out by his sides, he then brings his arms down to his body and claps his hands together, after this he walks down and to the left where he proceeds to sit on a seat.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="figs/detail_west.gif" alt="MY ALT TEXT" width="500" height="500" style="display:block; margin:auto;"/>
+      <h2 class="subtitle has-text-centered">
+        A person walks. During the process, the person moves to the west, the person looks rightward forward.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="figs/detail_east.gif" alt="MY ALT TEXT" width="500" height="500" style="display:block; margin:auto;"/>
+      <h2 class="subtitle has-text-centered">
+        A person walks. During the process, the person moves to the east, his left forearm moves to the right front up, left back up repeatly.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="figs/detail_circle.gif" alt="MY ALT TEXT" width="500" height="500" style="display:block; margin:auto;"/>
+      <h2 class="subtitle has-text-centered">
+        A person walks. During the process, the person moves to the north west, then south west, finally back to the middle.
+      </h2>
+    </div>
+
+  </div>
+</div>
+</div>
+</section>
+<!-- End image carousel -->
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="columns is-centered has-text-centered"><div class="column is-four-fifths"><h2 class="title">BibTeX</h2></div></div>
+      <pre><code>BibTex Code Here</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
