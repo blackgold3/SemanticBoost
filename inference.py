@@ -17,6 +17,7 @@ def interface(prompt, mode="camd", render_mode="pyrender", out_size=1024, tada_r
     name = prompt.replace("/", "_").replace(" ", "_").replace(",", "_").replace("#", "_").replace("|", "_").replace(".npy", "").replace(".txt", "").replace(".csv", "").replace(".", "").replace("'", "_")
     name = "_".join(name.split("_")[:25])
     out_path = os.path.join("results/motion", name + ".mp4")
+    gif_path = os.path.join("results/motion", name + ".gif")
     joint_path = os.path.join("results/joints", name + ".npy")
     smpl_path = os.path.join("results/smpls", name + ".npy")
     fbx_path = os.path.join("results/fbxs", name + ".fbx")
@@ -67,7 +68,7 @@ def interface(prompt, mode="camd", render_mode="pyrender", out_size=1024, tada_r
         video.write(pic)   #写入视频
     video.release()
 
-    # imageio.mimsave(gif_path, pics, duration= 1000 / 20, loop=0)
+    imageio.mimsave(gif_path, pics, duration= 1000 / 20, loop=0)
 
     t4 = time.time()
 
@@ -90,12 +91,12 @@ def interface(prompt, mode="camd", render_mode="pyrender", out_size=1024, tada_r
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='visualize demo')
     ############################ basic_setings ########################
-    parser.add_argument('--prompt', type=str, default="A person stands up from a chair, then walks counter clockwise along a circle, finally sits back on the chair.")
+    parser.add_argument('--prompt', type=str, default="120, A person walks forward and does a handstand.")
     parser.add_argument('--mode', type=str, default="ncamd", choices=['camd', 'camd-augment', "mdm", "ncamd", "ncamd-augment"], help="choose model")
     parser.add_argument("--render_mode", default="pyrender_slow", type=str, choices=["pyrender_slow", "pyrender_fast", "joints"])
     parser.add_argument("--size", default=1024, type=int)
     parser.add_argument("--tada_role", default=None, type=str)
-    parser.add_argument("--speedup", default=1, type=int, help="if load tensorRT model.")
+    parser.add_argument("--speedup", default=0, type=int, help="if load tensorRT model.")
     parser.add_argument("--export2fbx", default=0, type=int, help="export2fbx == 0 do not export fbx, else export fbx file.")
     parser.add_argument("--blender_path", default="/data/TTA/blender/blender", type=str, help="export fbx mush through blender api, we test with 2.93")
     
