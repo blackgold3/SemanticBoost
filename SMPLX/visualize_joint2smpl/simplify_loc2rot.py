@@ -6,7 +6,6 @@ import h5py
 from SMPLX.visualize_joint2smpl.joints2smpl.src.smplify import SMPLify3D
 from tqdm import tqdm
 import argparse
-from motion.dataset.smooth import bezier_smooth
 
 class joints2smpl:
 

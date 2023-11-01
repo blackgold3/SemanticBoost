@@ -2,7 +2,7 @@
 
 <h1> SemanticBoost: Elevating Motion Generation with Augmented Textual Cues </h1>
 
-  <a href=''><img src='https://img.shields.io/badge/ArXiv-PDF-red'></a> &nbsp; <a href='https://blackgold3.github.io/SemanticBoost/'><img src='https://img.shields.io/badge/Project-Page-Green'></a> &nbsp; [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/Kleinhe/SemanticBoost)  &nbsp; [![Discord](https://dcbadge.vercel.app/api/server/rrayYqZ4tf?style=flat)](https://discord.gg/rrayYqZ4tf)
+  <a href='https://arxiv.org/abs/2310.20323'><img src='https://img.shields.io/badge/ArXiv-PDF-red'></a> &nbsp; <a href='https://blackgold3.github.io/SemanticBoost/'><img src='https://img.shields.io/badge/Project-Page-Green'></a> &nbsp; [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/Kleinhe/SemanticBoost)  &nbsp; [![Discord](https://dcbadge.vercel.app/api/server/rrayYqZ4tf?style=flat)](https://discord.gg/rrayYqZ4tf)
 
 
 <div>
@@ -67,9 +67,11 @@ In this repo, we achieves the functions:
 
 ## 📢 News
 
-[2023/10/20] **Release pretrained weights and inference process 🔥**
+[2023/10/20] **Release pretrained weights and inference process**
 
 [2023/10/27] **Release new pretrained weights and tensorRT speedup**
+
+[2023/11/01] **Release paper on Arxiv**
 
 ## ⚡️ Quick Start
 
@@ -175,6 +177,7 @@ python inference.py --prompt "120, A person walks forward and sits down on the c
 ######## More tada_role please refer to TADA-100
 
 python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode ncamd --size 1024 --render_mode pyrender_slow --tada_role "Iron Man" --speedup 1
+
 ```
 
 ### Prompt Engineering
@@ -205,9 +208,14 @@ python inference.py --prompt "120, A person walks forward and sits down on the c
 If you find our code or paper helps, please consider citing:
 
 ```bibtex
-
-placeholder
-
+@misc{he2023semanticboost,
+      title={SemanticBoost: Elevating Motion Generation with Augmented Textual Cues}, 
+      author={Xin He and Shaoli Huang and Xiaohang Zhan and Chao Wen and Ying Shan},
+      year={2023},
+      eprint={2310.20323},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
 ```
 
 ## Acknowledgments
