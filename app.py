@@ -8,12 +8,12 @@ css = """
 
 
 from huggingface_hub import snapshot_download
-from motion.visual_api import Visualize  
+from mdm.visual_api import Visualize  
 import moviepy.editor as mpy
 import torch
 import json
 
-with open("motion/path.json", "r") as f:
+with open("mdm/path.json", "r") as f:
     json_dict = json.load(f)
 
 def ref_video_fn(path_of_ref_video):

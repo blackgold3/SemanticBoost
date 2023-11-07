@@ -141,6 +141,10 @@ bash scripts/prepare.sh
   bash scripts/quanti.sh
   ```
 
+### 6. (Optional) Download Blender 2.93 to export fbx file
+
+> https://www.blender.org/download/releases/2-93/
+
 </details>
 
 ## 👀 Demo
@@ -161,45 +165,39 @@ python app.py
 
 <summary><b>Inference and Visualization</b></summary>
 
+### Parameters for inference
+
+```py
+'''
+--prompt     Input textual description for generation
+--mode       Which model to generate motion sequences
+--render     Render mode [3dslow, 3dfast, joints]
+--size       The resolution of output video
+--role       TADA role name, default is None
+--length     The total frames of output video, fps=20
+-f --follow  If the camera follow the motion process during render.
+-e --export  If export fbx file which will cost more time.
+'''
+```
+
 ### General Visualization
 
 ```sh
-
-#### speedup = 1 infer with TensorRT speedup = 0 load torch model
-
-python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode ncamd --size 1024 --render_mode pyrender_slow --speedup 1
+python inference.py --prompt "A person walks forward and sits down on the chair." --length "120" --mode ncamd --size 1024 --render "3dslow" -f -e
 ```
 
 ### TADA Visualization
 
 ```sh
-
 ######## More tada_role please refer to TADA-100
-
-python inference.py --prompt "120, A person walks forward and sits down on the chair." --mode ncamd --size 1024 --render_mode pyrender_slow --tada_role "Iron Man" --speedup 1
-
+python inference.py --prompt "A person walks forward and sits down on the chair." --mode ncamd --size 1024 --render "3dslow" --role "Iron Man" --length "120"
 ```
 
-### Prompt Engineering
+### Long Motion Synthesis by DoubleTake
 
-
-1. **Normal sentences** -> (Length,) Sentence
-
-    - Example: 120, A person waks backwards and sits down on the chair.
-
-    - PS: If do not give length, the default setting is 196 frames.
-
-2. **Detail control with semantic enhancement** -> (Length,) Sentence. During the process, (the person moves to [position],) (the person looks [head orientation],) (his left forearm moves to [left forearm position]).
-
-    - Example: 120, A person walks. During the process, the person moves to the south, the person looks forward downward, then leftward backward, his left forearm moves to body's beside, then left front, left back repeatly.
-
-3. **Long motion synthesis with DoubleTake strategy** -> (Length1, ) Sentence1 | (Length2, ) Sentence2 | ...
-
-    - Example: 100, A person walks forward. | 120, A person dances in place. | 100, A person walks backwards.
-
-    - PS: It will synthesize with DoubleTake when "|" is in the sentences.
-
-
+```sh
+python inference.py --prompt "A person walks forward.| A person dances in place.| A person walks backwards." --mode ncamd --size 1024 --render "3dslow" --length "120|100|120"
+```
 
 </details>
 

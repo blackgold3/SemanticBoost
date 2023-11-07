@@ -16,7 +16,7 @@ class joints2smpl:
         self.batch_size = num_frames
         self.num_joints = 22  # for HumanML3D
         self.joint_category = "AMASS"
-        self.num_smplify_iters = 15
+        self.num_smplify_iters = 30
         self.fix_foot = False
         
         smplmodel = smplx.create(self.smpl_dir, model_type="smpl", gender="neutral", ext="pkl",
