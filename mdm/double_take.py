@@ -1,6 +1,5 @@
 from copy import deepcopy
 import torch
-import pandas as pd
 import numpy as np
 
 def pad_sample_with_zeros(sample, max_len=250):
@@ -214,29 +213,7 @@ def double_take(prompt=None, path=None, num_repetitions=1, model=None, diffusion
             'tokens': [''],
             'scale': torch.ones(len(texts))*guidance_param
         }}
-    elif path.split(".")[-1] == "csv":
-        df = pd.read_csv(path)
-        num_samples = len(list(df['text']))  
-        model_kwargs = {'y': {
-            'mask': torch.ones((len(list(df['text'])), 1, 1, default_length)), #196 is humanml max frames number
-            'lengths': torch.tensor(list(df['length'])),
-            'text': list(df['text']),
-            'tokens': [''],
-            'scale': torch.ones(len(list(df['text'])))*guidance_param
-        }}  
-    elif path.split(".")[-1] == "txt":
-        with open(path, 'r') as fr:
-            texts = fr.readlines()
-        texts = [s.replace('\n', '') for s in texts]
-        num_samples = len(texts)      
-        model_kwargs = {'y': {
-            'mask': torch.ones((len(texts), 1, 1, default_length)), # 196 is humanml max frames number
-            'lengths': torch.tensor([default_length]*len(texts)),
-            'text': texts,
-            'tokens': [''],
-            'scale': torch.ones(len(texts))*guidance_param
-        }}
-
+   
     all_motions = []
 
     for rep_i in range(num_repetitions):

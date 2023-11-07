@@ -20,5 +20,5 @@
     "ncamd-augment2":"midfile/ncamd-augment_clip.engine",
     "smpl2fbx_m":"mdm/dataset/SMPL_m_unityDoubleBlends_lbs_10_scale5_207_v1.0.0.fbx",
     "smpl2fbx_f":"mdm/dataset/SMPL_f_unityDoubleBlends_lbs_10_scale5_207_v1.0.0.fbx",
-    "blender_path":"/data/TTA/SDH/blender"
+    "blender_path":"blender-2.93.18-linux-x64"
 }

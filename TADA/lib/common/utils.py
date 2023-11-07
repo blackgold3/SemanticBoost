@@ -2,23 +2,10 @@ import os
 import random
 import json
 import pickle as pkl
-import cv2
 import numpy as np
 import imageio
 import torch
 from packaging import version as pver
-
-from yacs.config import CfgNode as CN
-
-
-def load_config(path, default_path=None):
-    cfg = CN(new_allowed=True)
-    if default_path is not None:
-        cfg.merge_from_file(default_path)
-    cfg.merge_from_file(path)
-
-    return cfg
-
 
 def dot(x: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
     return torch.sum(x * y, -1, keepdim=True)
@@ -30,24 +17,6 @@ def custom_meshgrid(*args):
         return torch.meshgrid(*args)
     else:
         return torch.meshgrid(*args, indexing='ij')
-
-
-def plot_grid_images(images, row, col, save_path=None):
-    """
-    Args:
-        images: np.array [B, H, W, 3]
-        row:
-        col:
-        save_path:
-
-    Returns:
-
-    """
-    assert row * col == images.shape[0]
-    images = np.vstack([np.hstack(images[r * col:(r + 1) * col]) for r in range(row)])
-    if save_path:
-        cv2.imwrite(save_path, images * 255)
-    return images
 
 
 def safe_normalize(x, eps=1e-20):
@@ -321,10 +290,3 @@ def create_checkerboard(h, w, c, grid_size):
     dy = (w - cy) // 2
     out[dx:dx + cx, dy:dy + cy] = checkerboard
     return out
-
-
-if __name__ == '__main__':
-    out = create_checkerboard(512, 512, 3, 64)
-    import cv2
-
-    cv2.imwrite("ck.png", out * 255)

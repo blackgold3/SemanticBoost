@@ -25,7 +25,7 @@ class Predictor(object):
         args.quantization = False
         mode = kargs.get("mode", "camd")
         
-        if not os.path.exists(self.path[f"{mode}1"]) or not os.path.exists(self.path[f"{mode}2"]):
+        if mode != "mdm" and (not os.path.exists(self.path[f"{mode}1"]) or not os.path.exists(self.path[f"{mode}2"])):
             self.speedup = 0
 
         if mode == "camd":

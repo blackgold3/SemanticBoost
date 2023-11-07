@@ -81,7 +81,11 @@ In this repo, we achieves the functions:
 ### 1. Dependencies
 
 ```sh
-python install -r requirements.txt
+##### create new environment for conda 
+conda create -n boost python==3.9.15
+#### install dependencies
+conda activate boost
+pip install -r requirements.txt
 ```
 
 ### 2. Linux Package - Debian (EGL package for render)
@@ -142,8 +146,9 @@ bash scripts/prepare.sh
   ```
 
 ### 6. (Optional) Download Blender 2.93 to export fbx file
-
-> https://www.blender.org/download/releases/2-93/
+```sh
+bash scripts/blender_prepare.sh
+```
 
 </details>
 

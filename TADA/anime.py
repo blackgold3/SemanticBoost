@@ -1,12 +1,6 @@
 import os
-import json
-import pickle as pkl
-import random
-import argparse
-import cv2
 import torch
 from TADA import smplx
-import imageio
 import numpy as np
 from tqdm import tqdm
 from PIL import Image
@@ -15,9 +9,6 @@ from TADA.lib.common.utils import SMPLXSeg
 from TADA.lib.common.lbs import warp_points
 from TADA.lib.common.obj import compute_normal
 import trimesh
-import pyrender
-from shapely import geometry
-import moviepy.editor as mpy
 os.environ['PYOPENGL_PLATFORM'] = "egl"
 
 def build_new_mesh(v, f, vt, ft):
