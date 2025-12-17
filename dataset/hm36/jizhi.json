@@ -1,0 +1,14 @@
+{
+  "readable_name": "sever_hm36_joints2smpl_file03",
+  "Token": "ayoT3ZAsqgdyIdISlbNNrg",
+  "business_flag": "AILab_Game_Report_PaaS",
+  "priority_level": "LOW",
+  "elastic_level": 1,
+  "GPUName": "A100",
+  "host_num": 1,
+  "host_gpu_num": 1,
+  "model_local_file_path": "/data/TTA/motionWE",
+  "image_full_name": "mirrors.tencent.com/kleinhe/tta:sft",
+  "cuda_version": "11.0",
+  "start_cmd": "dataset/hm36/start.sh"
+}

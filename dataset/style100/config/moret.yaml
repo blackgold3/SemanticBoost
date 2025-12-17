@@ -1,0 +1,29 @@
+# global
+#data_path_win: 'D:\UGit\MotionRetagret\code\mixamoier\'
+#code_path_win: 'D:\UGit\MotionRetagret\code\mixamoier\src\'
+pool_config_path_win: 'pool'
+
+#chrome_download_path: 'C:\Users\hoewang\Downloads\Mixamo_downloads'
+#chrome_profile_path: 'C:\Users\hoewang\AppData\Local\Google\Chrome\User Data'
+
+
+data_path_win: 'D:\UGit\mixamoier\'
+code_path_win: 'D:\UGit\mixamoier\src\'
+chrome_download_path: 'C:\Users\why\Downloads\Mixamo_downloads'
+chrome_profile_path: 'C:\Users\why\AppData\Local\Google\Chrome\User Data'
+
+data_path_linux: 'data'
+code_path_linux: 'data'
+data_path_linux2: 'data'
+code_path_linux2: 'data'
+pool_config_path_linux: 'pool'
+
+
+data_path_darwin: 'data'
+code_path_darwin: 'data'
+pool_config_path_darwin: 'pool'
+
+#cuda_preferred: False # remains agnostic if cuda will help to accelerate for limited sequences of motion.
+cuda_preferred: True # remains agnostic if cuda will help to accelerate for limited sequences of motion.
+auto_release_pool: False # TODO: not work since 'file.open' not defined when auto __del__.
+

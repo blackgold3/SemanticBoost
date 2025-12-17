@@ -1,0 +1,23 @@
+RENDER:
+  JOINT_TYPE: mmm
+  INPUT_MODE: npy
+  DIR: ''
+  NPY: ''
+  DENOISING: true
+  OLDRENDER: true
+  RES: high
+  DOWNSAMPLE: true
+  FPS: 12.5
+  CANONICALIZE: true
+  EXACT_FRAME: 0.5
+  NUM: 7
+  MODE: sequence
+  VID_EXT: mp4
+  ALWAYS_ON_FLOOR: false
+  GT: false
+  KEEP_PATH: ''
+DEMO:
+  MOTION_TRANSFER: false
+  RENDER: false
+  FRAME_RATE: 12.5
+  EXAMPLE: null

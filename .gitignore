@@ -1,0 +1,9 @@
+results/
+src_control/
+dataset/new_label_augment/
+dataset/new_augment.py
+sample/control_model_infer.py
+sample/visual_control.py
+__pycache__/
+data_loaders/control_mask.py
+data_loaders/split_read_loader_control.py

@@ -1,0 +1,1 @@
+python -m SMPLX.joints2smpl --model_path /apdcephfs_cq11/share_1567347/share_info/kleinhe/checkpoints/body_models --source_path /apdcephfs_cq11/share_1567347/share_info/kleinhe/motionDataset/hm36/joints/03 --target_path /apdcephfs_cq11/share_1567347/share_info/kleinhe/motionDataset/hm36/pose
